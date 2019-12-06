@@ -148,7 +148,7 @@ def fix_country(old_country, bill_state, ship_state):
     can_provs = ['Alberta', 
       'British Columbia', 
       'Manitoba', 
-      'New Brunswick', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon Territory']
+      'New Brunswick', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon Territory'] + ['AB', 'BC', 'MB', 'NB', 'NL', 'NT', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
     return val in can_provs
   def check_us_can_au(val):
     if check_if_usa(val):
@@ -182,7 +182,6 @@ else:
 wcapi = make_api()
 order_ids = get_order_ids()
 for id in order_ids:
-  print("NEXT ORDER-----------------------------------------------")
   order = wcapi.get(f"orders/{id}").json()
   shipping = order['shipping']
   billing = order['billing']
