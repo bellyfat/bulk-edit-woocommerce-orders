@@ -186,4 +186,3 @@ for id in order_ids:
   shipping = order['shipping']
   billing = order['billing']
   new_country = fix_country(billing['country'], billing['state'], shipping['state'])
-  print(new_country)
