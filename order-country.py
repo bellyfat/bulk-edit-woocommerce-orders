@@ -172,27 +172,29 @@ def fix_country(old_country, bill_state, ship_state):
     print("There was no billing or shipping states...")
     return None
 
+def fix_country_reqs():
+  set_variables()
+  if check_environment():
+    print("Authentication details are set.")
+  else:
+    print("You must set up your authentication details.")
 
-set_variables()
-if check_environment():
-  print("Authentication details are set.")
-else:
-  print("You must set up your authentication details.")
+  wcapi = make_api()
+  order_ids = get_order_ids()
+  num_orders = len(order_ids)
 
-wcapi = make_api()
-order_ids = get_order_ids()
-num_orders = len(order_ids)
-
-for num, id in enumerate(order_ids):
-  order = wcapi.get(f"orders/{id}").json()
-  shipping = order['shipping']
-  billing = order['billing']
-  new_country = fix_country(billing['country'], billing['state'], shipping['state'])
-  if not new_country == None:
-    data = {
-      "billing": {
-        "country": new_country
+  for num, id in enumerate(order_ids):
+    order = wcapi.get(f"orders/{id}").json()
+    shipping = order['shipping']
+    billing = order['billing']
+    new_country = fix_country(billing['country'], billing['state'], shipping['state'])
+    if not new_country == None:
+      data = {
+        "billing": {
+          "country": new_country
+        }
       }
-    }
-    print(f"Editing order {num} of {num_orders}")
-    print(wcapi.put(f"orders/{id}", data).json())
+      print(f"Editing order {num} of {num_orders}")
+      print(wcapi.put(f"orders/{id}", data).json())
+
+fix_country_reqs()
