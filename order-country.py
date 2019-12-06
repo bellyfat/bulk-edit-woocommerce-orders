@@ -181,8 +181,18 @@ else:
 
 wcapi = make_api()
 order_ids = get_order_ids()
-for id in order_ids:
+num_orders = len(order_ids)
+
+for num, id in enumerate(order_ids):
   order = wcapi.get(f"orders/{id}").json()
   shipping = order['shipping']
   billing = order['billing']
   new_country = fix_country(billing['country'], billing['state'], shipping['state'])
+  if not new_country == None:
+    data = {
+      "billing": {
+        "country": new_country
+      }
+    }
+    print(f"Editing order {num} of {num_orders}")
+    print(wcapi.put(f"orders/{id}", data).json())
