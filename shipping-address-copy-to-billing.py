@@ -32,11 +32,8 @@ def get_order_ids():
     print(str(line_count) + " orders in list.")
   return ids
 
-def address_complete(address):
-  # Check that every mandatory field is filled out
-  # all (k in address for k in('first_name', 'last_name', 'address_1', 'city', 'state', 'postcode', 'country'))
-  #   print(k)
-  # return address
+def check_address_complete(address):
+  return bool(address['first_name']) and bool(address['last_name']) and bool(address['address_1']) and bool(address['city']) and bool(address['state']) and bool(address['postcode']) and bool(address['country'])
 
 def copy_shipping_to_billing():
   set_variables()
@@ -53,8 +50,8 @@ def copy_shipping_to_billing():
     order = wcapi.get(f"orders/{id}").json()
     shipping = order['shipping']
     billing = order['billing']
-    print(address_complete(shipping))
-    print(address_complete(billing))
+    # print(check_address_complete(shipping))
+    print(check_address_complete(billing))
 
     # if address_complete(shipping) and not address_complete(billing):
     #   # data = {
