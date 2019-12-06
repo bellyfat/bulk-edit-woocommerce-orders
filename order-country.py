@@ -88,7 +88,61 @@ def fix_country(old_country, bill_state, ship_state):
                     "Washington",
                     "Wisconsin",
                     "West Virginia",
-                    "Wyoming"]
+                    "Wyoming"] + [ "AK",
+                      "AL",
+                      "AR",
+                      "AS",
+                      "AZ",
+                      "CA",
+                      "CO",
+                      "CT",
+                      "DC",
+                      "DE",
+                      "FL",
+                      "GA",
+                      "GU",
+                      "HI",
+                      "IA",
+                      "ID",
+                      "IL",
+                      "IN",
+                      "KS",
+                      "KY",
+                      "LA",
+                      "MA",
+                      "MD",
+                      "ME",
+                      "MI",
+                      "MN",
+                      "MO",
+                      "MS",
+                      "MT",
+                      "NC",
+                      "ND",
+                      "NE",
+                      "NH",
+                      "NJ",
+                      "NM",
+                      "NV",
+                      "NY",
+                      "OH",
+                      "OK",
+                      "OR",
+                      "PA",
+                      "PR",
+                      "RI",
+                      "SC",
+                      "SD",
+                      "TN",
+                      "TX",
+                      "UT",
+                      "VA",
+                      "VI",
+                      "VT",
+                      "WA",
+                      "WI",
+                      "WV",
+                      "WY"]
     return val in us_states
   def check_if_can(val):
     can_provs = ['Alberta', 
@@ -101,7 +155,7 @@ def fix_country(old_country, bill_state, ship_state):
       return 'United States'
     elif check_if_can(val):
       return 'Canada'
-    elif val == 'Queensland':
+    elif val == 'Queensland' or 'Australia' in val:
       return 'Australia'
     else:
       print(f'Can\'t find the country for {val}')
@@ -117,6 +171,7 @@ def fix_country(old_country, bill_state, ship_state):
   else:
     print("There was no billing or shipping states...")
     return None
+
 
 set_variables()
 if check_environment():
