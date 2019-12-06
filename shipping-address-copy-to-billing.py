@@ -1,3 +1,5 @@
+# THIS FILE IS A WORK IN PROGRESS - NOT COMPLETE!
+
 # Install:
 # pip install woocommerce
 # Put your API credentials in secretsEXAMPLE.py, and rename it to secrets.py
@@ -23,7 +25,7 @@ def make_api():
 
 def get_order_ids():
   ids = list()
-  with open('orders.csv') as csv_file:
+  with open('orders2.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
@@ -48,18 +50,17 @@ def copy_shipping_to_billing():
 
   for num, id in enumerate(order_ids):
     order = wcapi.get(f"orders/{id}").json()
-    shipping = order['shipping']
-    billing = order['billing']
-    # print(check_address_complete(shipping))
-    print(check_address_complete(billing))
-
-    # if address_complete(shipping) and not address_complete(billing):
-    #   # data = {
-    #   #   "billing": {
-    #   #     "country": 
-    #   #   }
-    #   # }
-    #   print(f"Editing order {num} of {num_orders}")
-    #   print(wcapi.put(f"orders/{id}", data).json())
+    if 'shipping' in order:
+      shipping = order['shipping']
+      billing = order['billing']
+      print(f"Processing order {num} of {num_orders}")
+      if check_address_complete(shipping) and not check_address_complete(billing):
+        print(f"going to copy this shipping address {shipping} into billing address {billing}")
+        # data = {
+        #   "billing": {
+        #     "country": 
+        #   }
+        # }
+        # print(wcapi.put(f"orders/{id}", data).json())
 
 copy_shipping_to_billing()
