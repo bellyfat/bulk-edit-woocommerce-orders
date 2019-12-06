@@ -40,7 +40,8 @@ else:
 
 wcapi = make_api()
 order_ids = get_order_ids()
-
 for id in order_ids:
-  print(id)
-  print(wcapi.get("orders/{id}").json())
+  print("NEXT ORDER-----------------------------------------------")
+  order = wcapi.get(f"orders/{id}").json()
+  print(order['shipping'])
+  print(order['billing'])
