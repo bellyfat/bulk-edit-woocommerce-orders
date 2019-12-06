@@ -1,2 +1,5 @@
-node-modules/
 .env
+.vscode
+venv/
+secrets.py
+__pycache__
