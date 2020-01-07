@@ -1,9 +1,7 @@
-# THIS FILE IS A WORK IN PROGRESS - NOT COMPLETE!
-
 # Install:
 # pip install woocommerce
 # Put your API credentials in secretsEXAMPLE.py, and rename it to secrets.py
-# Upload a .csv containing ONLY the order IDs you want to edit (see orders.csv as an example)
+# Upload a .csv containing ONLY the order IDs you want to edit (see orders.csv as an example). Please ensure you don't have a header row.
 
 # Billing and shipping addresses have this format:
 # {'first_name': 'First', 'last_name': 'Last', 'company': '', 'address_1': '213 Street Rd', 'address_2': '#101', 'city': 'Cityname', 'state': 'CA', 'postcode': '90210', 'country': 'US'}

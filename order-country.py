@@ -1,7 +1,7 @@
 # Install:
 # pip install woocommerce
 # Put your API credentials in secretsEXAMPLE.py, and rename it to secrets.py
-# Upload a .csv containing ONLY the order IDs you want to edit (see orders.csv as an example)
+# Upload a .csv containing ONLY the order IDs you want to edit (see orders.csv as an example). Please ensure you don't have a header row.
 
 # Setup:
 from woocommerce import API
